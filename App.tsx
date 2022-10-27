@@ -9,22 +9,23 @@
  */
 import {StyleProvider} from 'react-native-zephyr';
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '@screens/Home';
 import Profile from '@screens/Profile';
+import {NavigationContainer} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <StyleProvider>
-      <SafeAreaView>
-        <Stack.Navigator initialRouteName="Home">
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
-      </SafeAreaView>
+      </NavigationContainer>
     </StyleProvider>
   );
 };
