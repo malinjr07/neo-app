@@ -1,11 +1,17 @@
-import {View, Text} from 'react-native';
+import {View, Text, Button, ScrollView} from 'react-native';
 import React from 'react';
 
-const About = () => {
+const About = ({navigation}: {navigation: any}) => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>About</Text>
-    </View>
+    <ScrollView style={{flex: 1}}>
+      <View>
+        <Text style={{color: '#000000', fontSize: 20}}>Home</Text>
+        <Button
+          title="Go to Profile"
+          onPress={() => navigation.navigate('Profile')}
+        />
+      </View>
+    </ScrollView>
   );
 };
 

@@ -6,27 +6,42 @@ import About from './About';
 
 const Tab = createBottomTabNavigator();
 
+type navTypes = {
+  component: (e: any) => JSX.Element;
+  componentName: string;
+  tabType: 'text' | 'icon';
+  tabValue: string;
+}[];
+
+const navigations: navTypes = [
+  {
+    component: About,
+    componentName: 'About',
+    tabType: 'text',
+    tabValue: 'dj baharul',
+  },
+  {
+    component: Profile,
+    componentName: 'Profile',
+    tabType: 'text',
+    tabValue: 'dj baharul',
+  },
+];
+
 const Home = ({navigation}: any) => {
   return (
-    <ScrollView>
-      <View
-        style={{
-          flex: 1,
-        }}>
-        <View style={{flex: 1}}>
-          <Text style={{color: '#000000', fontSize: 20}}>Home</Text>
-          <Button
-            title="Go to Profile"
-            onPress={() => navigation.navigate('Profile')}
-          />
-        </View>
-
-        <Tab.Navigator>
-          <Tab.Screen name="About" component={About} />
-          <Tab.Screen name="Profile" component={Profile} />
-        </Tab.Navigator>
-      </View>
-    </ScrollView>
+    <Tab.Navigator>
+      {navigations.map((value: any, id: any) => (
+        <Tab.Screen
+          key={id}
+          name={value.componentName}
+          options={{
+            title: value.tabValue,
+          }}
+          component={value.component}
+        />
+      ))}
+    </Tab.Navigator>
   );
 };
 
